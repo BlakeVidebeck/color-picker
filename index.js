@@ -16,6 +16,28 @@ function init() {
 	reset();
 }
 
+//for the easy / hard button in the nav
+function setupModeButtons() {
+	for (let i = 0; i < modeButtons.length; i++) {
+		modeButtons[i].addEventListener('click', function () {
+			modeButtons[0].classList.remove('selected');
+			modeButtons[1].classList.remove('selected');
+			modeButtons[2].classList.remove('selected');
+			this.classList.add('selected');
+			if (this.textContent === 'Easy') {
+				numSquares = 3;
+			} else if (this.textContent === 'Medium') {
+				numSquares = 6;
+			} else {
+				numSquares = 9;
+			}
+
+			reset();
+		});
+	}
+}
+
+//setting up the squares to be clickable
 function setupSquares() {
 	for (let i = 0; i < squares.length; i++) {
 		//add click listeners to squares
@@ -36,18 +58,7 @@ function setupSquares() {
 	}
 }
 
-function setupModeButtons() {
-	for (let i = 0; i < modeButtons.length; i++) {
-		modeButtons[i].addEventListener('click', function () {
-			modeButtons[0].classList.remove('selected');
-			modeButtons[1].classList.remove('selected');
-			this.classList.add('selected');
-			this.textContent === 'Easy' ? (numSquares = 3) : (numSquares = 6);
-			reset();
-		});
-	}
-}
-
+//reset button and when the page loads
 function reset() {
 	//generate all new colors
 	colors = generateRandomColors(numSquares);
@@ -77,19 +88,20 @@ function changeColors(color) {
 	for (let i = 0; i < squares.length; i++) {
 		squares[i].style.backgroundColor = color;
 	}
-	//change each color to match given color
+	//change each color to match clicked color
 }
 
 function pickColor() {
-	//pick a random number
+	//picks a random number
 	let random = Math.floor(Math.random() * colors.length);
+	//random index from the colors array
 	return colors[random];
 }
 
 function generateRandomColors(num) {
-	//make and array
+	//make an array
 	let arr = [];
-	//repeat num times
+	//repeat how ever many times the mode is for (3 - 6)
 	for (let i = 0; i < num; i++) {
 		//get random color and push into array
 		arr.push(randomColor());
@@ -98,6 +110,7 @@ function generateRandomColors(num) {
 	return arr;
 }
 
+//pick a random rgb color and form it
 function randomColor() {
 	//pick a red from 0 - 255
 	let r = Math.floor(Math.random() * 256);

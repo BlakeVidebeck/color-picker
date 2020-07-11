@@ -21,7 +21,8 @@ body {
 	max-width: 600px;
 }
 
-h1 {
+h1,
+p {
 	color: white;
 	line-height: 1.1;
 	text-align: center;
@@ -29,7 +30,7 @@ h1 {
 	background-color: Steelblue;
 	margin: 0;
 	text-transform: uppercase;
-	padding: 20px 0;
+	padding: 10px 0;
 }
 
 #colorDisplay {
